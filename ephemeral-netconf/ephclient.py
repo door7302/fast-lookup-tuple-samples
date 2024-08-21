@@ -11,7 +11,7 @@ if __name__ == '__main__':
     parser.add_argument('-r', '--router', nargs=1, help='target router name', required=True)
     parser.add_argument('-u', '--user', nargs=1, help='Username', required=True)
     parser.add_argument('-p', '--pwd', nargs=1, help='Password', required=True)
-    parser.add_argument('-f', '--file', nargs=1, help='Filename with action', required=True)
+    parser.add_argument('-j', '--jobs', nargs=1, help='Name of the file that contains jobs', required=True)
     parser.add_argument('-e', '--ephemeral', nargs=1, help='Name of the Ephemeral DB', required=True)
     parser.add_argument('-l', '--list', nargs=1, help='Name of the Fast Five Tuples List', required=True)
     options = parser.parse_args()
