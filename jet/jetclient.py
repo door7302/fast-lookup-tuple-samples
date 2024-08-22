@@ -1,6 +1,6 @@
 # Before you need to compile proto files and move generated .py files in ./lib/ 
 # cd junos-extension-toolkit/24.2/24.2R1.17/
-# python3 -m grpc_tools.protoc -I./2 --python_out=. --grpc_python_out=. 2/jnx_common_base_types.proto 2/jnx_common_addr_types.proto 2/jnx_firewall_service.proto
+# python3 -m grpc_tools.protoc -I./2 --python_out=. --grpc_python_out=. 2/jnx_common_base_types.proto 2/jnx_common_addr_types.proto 2/jnx_firewall_service.proto 2/authentication_service
 
 import grpc
 import sys
@@ -21,8 +21,6 @@ from authentication_service_pb2 import *
 import authentication_service_pb2 as auth_pb2
 import authentication_service_pb2_grpc as auth_pb2_grpc
 
-
-
 def create_fixed_length_hash(input_string, length=13):
     input_bytes = input_string.encode('utf-8')
     hash_object = hashlib.sha256()
@@ -30,7 +28,6 @@ def create_fixed_length_hash(input_string, length=13):
     hash_bytes = hash_object.digest()
     fixed_length_hash = hash_bytes[:length]
     return str(fixed_length_hash.hex())
-
 
 try: 
     if __name__ == '__main__':
