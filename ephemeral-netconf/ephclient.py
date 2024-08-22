@@ -16,7 +16,7 @@ if __name__ == '__main__':
     parser.add_argument('-l', '--list', nargs=1, help='Name of the Fast Five Tuples List', required=True)
     options = parser.parse_args()
 
-    warn_to_ignore = ["statement not found","statement has no contents", "No objects matched", "is protected"]
+    #warn_to_ignore = ["statement not found","statement has no contents", "No objects matched", "is protected"]
 
     # configure logger
     logger = logging.getLogger('mylogger')
