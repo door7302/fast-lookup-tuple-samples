@@ -37,7 +37,7 @@ try:
         parser.add_argument('-p', '--pwd', nargs=1, help='Password', required=True)
         parser.add_argument('-s', '--secure', nargs=1, help='Secure grpc channel - provide pem certificate', required=False)
         parser.add_argument('-i', '--interface', nargs=1, help='Interface on which we will bind the filter', required=True)
-        parser.add_argument('-f', '--file', nargs=1, help='Filename with action', required=True)
+        parser.add_argument('-j', '--jobs', nargs=1, help='Name of the file that contains jobs', required=True)
         options = parser.parse_args()
 
         # configure logger
@@ -52,7 +52,7 @@ try:
         target = options.target[0]
         user = options.user[0]
         password = options.pwd[0]    
-        filename = options.file[0]
+        filename = options.jobs[0]
         secure = False
         if options.secure:
             cert = options.secure[0]
