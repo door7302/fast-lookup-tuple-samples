@@ -37,6 +37,7 @@ try:
         parser.add_argument('-p', '--pwd', nargs=1, help='Password', required=True)
         parser.add_argument('-s', '--secure', nargs=1, help='Secure grpc channel - provide pem certificate', required=False)
         parser.add_argument('-i', '--interface', nargs=1, help='Interface on which we will bind the filter', required=True)
+        parser.add_argument('-f', '--filter', nargs=1, help='Dynamic JET filter name', required=True)
         parser.add_argument('-j', '--jobs', nargs=1, help='Name of the file that contains jobs', required=True)
         options = parser.parse_args()
 
@@ -53,6 +54,7 @@ try:
         user = options.user[0]
         password = options.pwd[0]    
         filename = options.jobs[0]
+        dynFilter = options.filter[0]
         secure = False
         if options.secure:
             cert = options.secure[0]
@@ -112,7 +114,7 @@ try:
         ##################################################################################
         # create an implicit filter with only the last term 
         ##################################################################################
-        logger.info("Create implicit JET filter named ON_DEMAND_5_TUPLE")
+        logger.info(f"Create implicit JET filter named {dynFilter}")
 
         # Create FilterTermInetTerminatingAction
         terminating_action = pb.FilterTermInetTerminatingAction(accept=True)
@@ -139,7 +141,7 @@ try:
 
         # Create FilterAddRequest
         filter_add_request = pb.FilterAddRequest(
-            name="ON_DEMAND_5_TUPLE",
+            name=dynFilter,
             type=pb.FilterTypes.TYPE_CLASSIC,
             family=pb.FilterFamilies.FAMILY_INET,
             flag=pb.FilterFlags.FLAGS_NONE,
@@ -161,7 +163,7 @@ try:
         logger.info(f"Bind the implicit JET filter to interface {interface}")
 
         # create filter name 
-        filter_name = pb.Filter(name="ON_DEMAND_5_TUPLE", family=pb.FilterFamilies.FAMILY_INET)
+        filter_name = pb.Filter(name=dynFilter, family=pb.FilterFamilies.FAMILY_INET)
         
         # create bind point
         bind_point = pb.FilterBindObjPoint(interface_name=interface)
@@ -268,7 +270,7 @@ try:
 
             # Create FilterModifyRequest
             filter_modify_request = pb.FilterModifyRequest(
-                name="ON_DEMAND_5_TUPLE",
+                name=dynFilter,
                 type=pb.FilterTypes.TYPE_CLASSIC,
                 family=pb.FilterFamilies.FAMILY_INET,
                 flag=pb.FilterFlags.FLAGS_NONE,
