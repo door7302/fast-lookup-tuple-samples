@@ -242,7 +242,7 @@ try:
             adjacency = pb.FilterAdjacency(type=pb.FilterAdjacencyType.TERM_AFTER, term_name="END")
 
             # Create FilterTermInetNonTerminatingAction
-            non_terminating_action = pb.FilterTermInetNonTerminatingAction(count=pb.ActionCounter(counter_name="cpt-term_name"))
+            non_terminating_action = pb.FilterTermInetNonTerminatingAction(count=pb.ActionCounter(counter_name="cpt-" +term_name))
 
             # Create FilterTermInetTerminatingAction
             terminating_action = pb.FilterTermInetTerminatingAction(discard=True)
