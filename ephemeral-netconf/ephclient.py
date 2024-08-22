@@ -30,7 +30,7 @@ if __name__ == '__main__':
     router = options.router[0]
     user = options.user[0]
     password = options.pwd[0]
-    filename = options.file[0]
+    filename = options.jobs[0]
     epheInst = options.ephemeral[0]
     prfxList = options.list[0]
 
