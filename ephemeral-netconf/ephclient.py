@@ -88,7 +88,7 @@ if __name__ == '__main__':
         logger.error("Unable to open Netconf session - connexion failed")
         exit()
     except Exception as e:
-        logger.error("Unable to open Netconf session - {e}")
+        logger.error(f"Unable to open Netconf session - {e}")
         exit()
     
     logger.info("Netconf session has been successfully opened")    
@@ -98,7 +98,7 @@ if __name__ == '__main__':
         openRpc = f"<open-configuration><ephemeral-instance>{epheInst}</ephemeral-instance></open-configuration>"
         returnValue = conn.rpc(to_ele(openRpc))
     except Exception as e:
-        logger.error("Unable to open the configuration database - {e}")
+        logger.error(f"Unable to open the configuration database - {e}")
         exit()
 
     # load the config 
@@ -106,7 +106,7 @@ if __name__ == '__main__':
         loadRpc = f'<load-configuration action="set" format="text"><configuration-set>{rpc}</configuration-set></load-configuration>'
         returnValue = conn.rpc(to_ele(loadRpc))
     except Exception as e:
-        logger.error("Unable to load the configuration - {e}")
+        logger.error(f"Unable to load the configuration - {e}")
         exit()
     
     logger.info("Configuration has been successfully loaded")    
@@ -115,7 +115,7 @@ if __name__ == '__main__':
     try:
         conn.commit()
     except Exception as e:
-        logger.error("Unable to commit the configuration - {e}")
+        logger.error(f"Unable to commit the configuration - {e}")
         exit()
 
     logger.info("Configuration has been successfully committed")    
@@ -124,7 +124,7 @@ if __name__ == '__main__':
     try:
         conn.close_session()
     except Exception as e:
-        logger.error("Unable to close the Netconf session - {e}")
+        logger.error(f"Unable to close the Netconf session - {e}")
         exit()
     
     logger.info("All jobs done, bye...")  
